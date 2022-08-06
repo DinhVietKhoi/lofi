@@ -1,0 +1,180 @@
+.street{
+    position: fixed;
+    z-index: 90;
+    top:0%;
+    left:0;
+    transition: .3s;
+    opacity:1;
+    visibility: visible;
+    &.hide{
+        display: none;
+    }
+    &__note{
+        position: absolute;
+        z-index: 90;
+        top: -150px;
+        right: 26%;
+        transform: translate(26%);
+        width: 100px;
+        height: 32px;
+        transition: 0.3s;
+        opacity: 1;
+        background-color: rgba(243, 169, 82, 1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-weight: 700;
+        opacity: 0;
+        visibility: hidden;
+        border-radius: 32px;
+        border: 1px solid rgb(239, 136, 10);
+        &::after{
+            position: absolute;
+            content: "";
+            top:27px;
+            left:50%;
+            transform: translateX(-50%);
+            border-top: 10px solid rgb(243, 169, 82);
+            border-left: 20px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-right: 20px solid transparent;
+        }
+    }
+    &__goHome{
+        position: absolute;
+        z-index: 90;
+        top: 60%;
+        width: 50px;
+        height: 50px;
+        right: 28%;
+        & img{
+            cursor: pointer;
+            position: relative;
+            width: 50px;
+            height: 50px;
+            &:hover+.street__note{
+                top:-70px;
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+    &__container{
+        width: 100vw;
+        height: 100vh;
+    }
+    &__video,&__video1,&__video2,&__video3{
+        
+        position: absolute;
+        transition: .2s;
+        
+        &--day{
+            width: 100vw;
+            height: 100vh;
+            min-width: 100vw!important;
+            min-height: 100vh!important;
+            object-fit: cover;
+        }
+        &--dayRain{
+            width: 100vw;
+            height: 100vh;
+            min-width: 100vw!important;
+            min-height: 100vh!important;
+            object-fit: cover;
+        }
+        &--night{
+            width: 100vw;
+            height: 100vh;
+            min-width: 100vw!important;
+            min-height: 100vh!important;
+            object-fit: cover;
+        }
+        &--nightRain{
+            width: 100vw;
+            height: 100vh;
+            min-width: 100vw!important;
+            min-height: 100vh!important;
+            object-fit: cover;
+        }
+    }
+    &__video{
+        opacity:0;
+    }
+    &__video2{
+        opacity:0;
+    }
+    &__video1{
+        opacity:0;
+
+    }
+    &__video3{
+        opacity:0;
+    }
+}
+.day>.street__video{
+    opacity:1;
+}
+.day>.street__video1{
+    opacity:0.9;
+
+
+}
+.day>.street__video2{
+    opacity:0.9;
+}
+.day>.street__video3{
+    opacity:0.9;
+}
+
+.dayRain>.street__video{
+    opacity:0.9;
+
+}
+.dayRain>.street__video1{
+    opacity:1;
+}
+.dayRain>.street__video2{
+    opacity:0.9;
+
+}
+.dayRain>.street__video3{
+    opacity:0.9;
+}
+
+.night>.street__video{
+    opacity:0.9;
+
+}
+.night>.street__video1{
+    opacity:0.9;
+
+
+}
+.night>.street__video2{
+    opacity:1;
+}
+.night>.street__video3{
+    opacity:0.9;
+
+
+}
+
+
+
+
+.nightRain>.street__video{
+    opacity:0.9;
+
+
+}
+.nightRain>.street__video1{
+    opacity:0.9;
+
+}
+.nightRain>.street__video2{
+    opacity:0.9;
+}
+.nightRain>.street__video3{
+    opacity:1;
+}

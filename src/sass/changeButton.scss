@@ -1,0 +1,58 @@
+.changeButton{
+    margin: 0 10px;
+    &__container{
+        position: relative;
+        width: 60px;
+        height: 30px;
+        cursor: pointer;
+        background-color: rgba(243, 169, 82, 1);
+        border-radius: 30px;
+        color:red;    
+        display: flex;
+        align-items: center;
+        padding:0 2px;
+        transition: 0.3s;
+        &.active{
+            background-color: rgba(243, 169, 82, 0.3);
+        }
+        & .dot{
+            width: 25px;
+            height: 25px;
+            border-radius: 100%;
+            background-color: #ffffff;
+            margin:0;
+            transition: 0.3s;
+        }
+        & i{
+            position: absolute;
+            font-size: 14px;
+            
+            margin:0 0 0 35px;
+            color:#ffffff;
+            transition: 0.3s;
+            &.mute{
+                &::after{
+                    position: absolute;
+                    content: "";
+                    top: -6px;
+                    left: 5px;
+                    width: 5px;
+                    height: 25px;
+                    border-radius: 5px;
+                    background-color: #ffffff;
+                    transform: rotate(45deg);
+                }
+            }
+        }
+    }
+}
+
+.active>.dot {
+    margin: 0 0 0 30px;
+}
+.active> i {
+    margin:0 0 0 3px;
+}
+.active> img {
+    margin:0 0 0 3px;
+}

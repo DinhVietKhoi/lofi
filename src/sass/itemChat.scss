@@ -1,0 +1,38 @@
+.itemChat{
+    width: 100%;
+    margin:2.5px 0;
+    &__cham{
+        font-weight: 700;
+        margin: 0 5px;
+        font-size: 16px;
+
+    }
+    &__user{
+        // background-color: red;
+        & .user{
+            width: auto;
+            background-color: transparent;
+        }
+    }
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    &__content{
+        padding-top: 10px;
+        font-size: 16px;
+        height: 40px;
+        display: flex;
+        flex-direction: row;
+        max-width: 80%;
+        & p{
+            width: 90%;
+            word-wrap:break-word;
+        }
+    }
+    &__boxContent{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+    }
+}
