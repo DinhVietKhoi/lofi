@@ -110,6 +110,7 @@ function App() {
         handleRg={handleRg}
         loginAccount={loginAccount}
         handleLogout={handleLogout}
+        checkRg={checkRg}
       ></Controls>
       <Street Street weather={weather} status={status} changeStreet={changeStreet} street={street}></Street>
       <Home weather={weather} status={status} changeStreet={changeStreet} street={street} ></Home>

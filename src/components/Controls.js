@@ -20,7 +20,7 @@ import 'react-toastify/dist/ReactToastify.css';
 defineLordIconElement(loadAnimation);
 
 // import  SpotifyPlayer from 'react-spotify-web-playback';
-function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather, changeStatus, changeKeyBoard, street, handleLg, handleRg, loginAccount, handleLogout}) {
+function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather, changeStatus, changeKeyBoard, street, handleLg, handleRg, loginAccount, handleLogout, checkRg}) {
     const rain = useRef()
     const rainData = 'https://s3.us-east-2.amazonaws.com/lofi.co/lofi.co/effects/rain_city.mp3'
     const [checkRain,setCheckRain] = useState(false)
@@ -68,7 +68,11 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
     //set icon change
     const [pause, setPause] = useState('play')
     //list data
-    const [currentMusc, setCurrentMusic] = useState('https://vnno-vn-6-tf-mp3-s1-zmp3.zmdcdn.me/5550a26ad82e3170683f/3511956447422652229?authen=exp=1659970500~acl=/5550a26ad82e3170683f/*~hmac=a9a00e7ae1d97d37b2f2533a98c6b11b&fs=MTY1OTmUsIC5NzmUsICwMDU4OXx3ZWJWNnwwfDE3MS4yMzQdUngMTA5LjIyNw')
+    const [currentMusc, setCurrentMusic] = useState('')
+    useEffect(() => {
+        listMusic&&setCurrentMusic(listMusic[0])
+    },[listMusic])
+
     const [indexCurrent, setIndexCurrent] = useState(0)
     const [checkPlay,setCheckPlay] = useState(false)
     const music = useRef()
@@ -220,7 +224,8 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
     }
     useEffect(() => {
         chat==true&&scrll.current.scrollIntoView({ behavior: "smooth" });
-    },[dataSuccess])
+    }, [dataSuccess])
+    
     //get list chat
     const [listChat, setListChat] = useState('')
     useEffect(() => {
@@ -230,12 +235,21 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
         })
         chat==true&&scrll.current.scrollIntoView({ behavior: "smooth" });
     }, [db])
+    useEffect(() => {
+        chat==true&&scrll.current.scrollIntoView({ behavior: "smooth" });
+    }, [listChat])
+    
+    const handleLogout1 = () => {
+        handleLogout()
+        setChat(!chat)
+    }
     return (
         <div className="controls">
             <div className="controls__container">
-                <ToastContainer
+            {!checkRg&&<ToastContainer
                     autoClose={2000}
                 />
+                }
                 <div className="controls__header">
                     <div className="controls__logo">
                         <img src={logo} alt="logo"></img>
@@ -270,7 +284,7 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
                                 <img src={loginAccount&&loginAccount.sex == 1 ? `https://avatars.dicebear.com/api/male/${loginAccount.name}.svg`: `https://avatars.dicebear.com/api/female/${loginAccount.name}.svg`}></img>
                                 {setting &&
                                     <div className='controls__setting'>
-                                        <div className='controls__logoutbtn' onClick={handleLogout}>
+                                        <div className='controls__logoutbtn' onClick={handleLogout1}>
                                             <i className="fa-solid fa-arrow-right-from-bracket"></i>
                                             <span style={{fontSize:'16px'}}>LogOut</span>
                                         </div>
@@ -295,8 +309,8 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
                     </div>
                     }
                     {
-                        chat &&
-                            <div className='controls__boxChat'>
+                        
+                        chat&&<div className='controls__boxChat'>
                                 <div className='controls__listUser'>
                                     <div className='controls__search'>
                                         <input type='text' placeholder='Nhập tên...' onChange={e=>setListSearch(e.target.value)}></input>
@@ -346,7 +360,7 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
                                     </div>
                                     
                                     <div className='controls__inputChat'>
-                                        <input maxLength="100" placeholder='Chat vào đây...' value={dataChat} onChange={e => setDataChat(e.target.value)} onKeyDown={handleChatInput}></input>
+                                        <input maxLength="70" placeholder='Chat vào đây...' value={dataChat} onChange={e => setDataChat(e.target.value)} onKeyDown={handleChatInput}></input>
                                     </div>
                                 </div>
                         </div>
