@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/DinhVietKhoi/lofi.git/static/css/main.71c9d20b.css",
+    "main.js": "/DinhVietKhoi/lofi.git/static/js/main.b1363f64.js",
+    "static/media/dayRain.mp4": "/DinhVietKhoi/lofi.git/static/media/dayRain.a1a298f819bb633ac406.mp4",
+    "static/media/nightRain.mp4": "/DinhVietKhoi/lofi.git/static/media/nightRain.7b06cb4713d38a24bfef.mp4",
+    "static/media/key.gif": "/DinhVietKhoi/lofi.git/static/media/key.d8cbf24cbf19eb82dfb1.gif",
+    "static/media/night.mp4": "/DinhVietKhoi/lofi.git/static/media/night.1befc195707d0afb99e4.mp4",
+    "static/media/morning.mp4": "/DinhVietKhoi/lofi.git/static/media/morning.f3d2d770039a30a5212a.mp4",
+    "static/media/logo.gif": "/DinhVietKhoi/lofi.git/static/media/logo.0cbf9e63b4a021661126.gif",
+    "static/media/chatBox.gif": "/DinhVietKhoi/lofi.git/static/media/chatBox.b9164fff7457d07342c3.gif",
+    "static/media/exit.gif": "/DinhVietKhoi/lofi.git/static/media/exit.b5c048ce3c66a70a5926.gif",
+    "static/media/volume.gif": "/DinhVietKhoi/lofi.git/static/media/volume.220e42f7a3b87ef37196.gif",
+    "static/media/settingMusic.gif": "/DinhVietKhoi/lofi.git/static/media/settingMusic.99293599ee71d0e1bca7.gif",
+    "index.html": "/DinhVietKhoi/lofi.git/index.html",
+    "main.71c9d20b.css.map": "/DinhVietKhoi/lofi.git/static/css/main.71c9d20b.css.map",
+    "main.b1363f64.js.map": "/DinhVietKhoi/lofi.git/static/js/main.b1363f64.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.71c9d20b.css",
+    "static/js/main.b1363f64.js"
+  ]
+}
