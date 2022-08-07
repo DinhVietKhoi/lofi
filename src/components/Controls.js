@@ -93,7 +93,7 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
         });
     }, [music.current,currentMusc])
     const handlePlay = () => {
-        music.current.autoplay =true;
+        // music.current.autoplay =true;
         if (!checkRain) { 
             rain.current.play()
             setCheckRain(!checkRain)
@@ -102,23 +102,26 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
             setCheckRain(!checkRain)
             rain.current.pause()
         }
-        pause=='play'?setPause('pause'):setPause('play')
-        setCheckPlay(!checkPlay)
+        pause == 'play' ? setPause('pause') : setPause('play')
+        
         if (!checkPlay) { 
             // rain.current.play()
             // setCheckRain(!checkRain)
-            // music.current.play()
+            music.current.play()
+            setCheckPlay(!checkPlay)
+
             console.log(music.current)
         } 
         else {
             // setCheckRain(!checkRain)
-            // music.current.pause()
+            music.current.pause()
             // rain.current.pause()
+            setCheckPlay(!checkPlay)
             console.log(music.current)
         }
     }
     const handleNext = () => {
-        music.current.autoplay = true;
+        // music.current.autoplay = true;
         if (listMusic && indexCurrent == listMusic.length - 1) {
             setIndexCurrent(0)
             setCurrentMusic(listMusic&&listMusic[0])
@@ -141,7 +144,7 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
         }
     }
     const handlePre = () => {
-        music.current.autoplay =true; 
+        // music.current.autoplay =true; 
         if (indexCurrent == 0) {
             setIndexCurrent(listMusic&&listMusic.length-1)
             setCurrentMusic(listMusic&&listMusic[listMusic.length-1])
