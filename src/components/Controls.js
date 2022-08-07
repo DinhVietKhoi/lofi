@@ -20,12 +20,7 @@ import 'react-toastify/dist/ReactToastify.css';
 defineLordIconElement(loadAnimation);
 
 // import  SpotifyPlayer from 'react-spotify-web-playback';
-function Controls({listUser, weather, status, keyBoard, changeWeather, changeStatus, changeKeyBoard, street, handleLg, handleRg, loginAccount, handleLogout, checkRg}) {
-    const listMusic = [
-        'https://dl.dropboxusercontent.com/s/pps9d292uapw3wu/LucidDream.%20-%20Journey%20%5BMASTERED%5D.mp3'
-        ,
-        'https://dl.dropboxusercontent.com/s/9q6klckixpyc4nn/Alazko%20-%20Unsaid.mp3'
-    ]
+function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather, changeStatus, changeKeyBoard, street, handleLg, handleRg, loginAccount, handleLogout, checkRg}) {
     const rain = useRef()
     const rainData = 'https://s3.us-east-2.amazonaws.com/lofi.co/lofi.co/effects/rain_city.mp3'
     const [checkRain,setCheckRain] = useState(false)
