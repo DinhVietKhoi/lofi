@@ -22,9 +22,9 @@ defineLordIconElement(loadAnimation);
 // import  SpotifyPlayer from 'react-spotify-web-playback';
 function Controls({listUser, weather, status, keyBoard, changeWeather, changeStatus, changeKeyBoard, street, handleLg, handleRg, loginAccount, handleLogout, checkRg}) {
     const listMusic = [
-        'https://vnno-vn-6-tf-mp3-s1-zmp3.zmdcdn.me/5550a26ad82e3170683f/3511956447422652229?authen=exp=1659970500~acl=/5550a26ad82e3170683f/*~hmac=a9a00e7ae1d97d37b2f2533a98c6b11b&fs=MTY1OTmUsIC5NzmUsICwMDU4OXx3ZWJWNnwwfDE3MS4yMzQdUngMTA5LjIyNw'
+        'https://dl.dropboxusercontent.com/s/pps9d292uapw3wu/LucidDream.%20-%20Journey%20%5BMASTERED%5D.mp3'
         ,
-        'https://mp3-s1-zmp3.zmdcdn.me/9c2491d45b95b2cbeb84/301473552952913585?authen=exp=1659970964~acl=/9c2491d45b95b2cbeb84/*~hmac=cd197b03b29fb53dfea8a237fff6b13b&fs=MTY1OTmUsIC5ODE2NDQzMXx3ZWJWNnwxMDg2OTY5Mzk0fDQyLjExNS4xMzYdUngOTQ'
+        'https://dl.dropboxusercontent.com/s/9q6klckixpyc4nn/Alazko%20-%20Unsaid.mp3'
     ]
     const rain = useRef()
     const rainData = 'https://s3.us-east-2.amazonaws.com/lofi.co/lofi.co/effects/rain_city.mp3'
