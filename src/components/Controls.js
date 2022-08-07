@@ -94,18 +94,27 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
     }, [music.current,currentMusc])
     const handlePlay = () => {
         music.current.autoplay =true;
+        if (!checkRain) { 
+            rain.current.play()
+            setCheckRain(!checkRain)
+        } 
+        else {
+            setCheckRain(!checkRain)
+            rain.current.pause()
+        }
         pause=='play'?setPause('pause'):setPause('play')
         setCheckPlay(!checkPlay)
         if (!checkPlay) { 
             // rain.current.play()
             // setCheckRain(!checkRain)
-            music.current.play()
-
+            // music.current.play()
+            console.log(music.current)
         } 
         else {
             // setCheckRain(!checkRain)
-            music.current.pause()
+            // music.current.pause()
             // rain.current.pause()
+            console.log(music.current)
         }
     }
     const handleNext = () => {
