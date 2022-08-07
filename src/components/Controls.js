@@ -93,13 +93,13 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
         });
     }, [music.current,currentMusc])
     const handlePlay = () => {
-        music.current.autoplay =true;
+        // music.current.autoplay =true;
         pause=='play'?setPause('pause'):setPause('play')
         setCheckPlay(!checkPlay)
         !checkPlay?music.current.play():music.current.pause()
     }
     const handleNext = () => {
-        music.current.autoplay = true;
+        // music.current.autoplay = true;
         if (listMusic && indexCurrent == listMusic.length - 1) {
             setIndexCurrent(0)
             setCurrentMusic(listMusic&&listMusic[0])
@@ -122,7 +122,7 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
         }
     }
     const handlePre = () => {
-        music.current.autoplay =true;
+        // music.current.autoplay =true; 
         if (indexCurrent == 0) {
             setIndexCurrent(listMusic&&listMusic.length-1)
             setCurrentMusic(listMusic&&listMusic[listMusic.length-1])
