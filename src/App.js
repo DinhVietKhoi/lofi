@@ -39,12 +39,8 @@ function App() {
       // Get database 
         onValue((ref(db,'listMusic')),(snapshot)=>{
           const data = snapshot.val();
-          const [id,value] = data
-          const listuser = Object.values(data)
-          setListMusic('')
-          listuser.map(l=>{
-              setListMusic(pre=>[...pre,l])
-          })
+          // const listmusic = Object.values(data)
+          setListMusic(data)
         })
       //get list user
       onValue((ref(db,'listAccount')),(snapshot)=>{
@@ -56,7 +52,7 @@ function App() {
           setListUser(pre1=>[...pre1,l1])
         })
       })
-  }, [])
+  }, [db])
   const [street, setStreet] = useState(false)
   const changeStreet = () => {
     setStreet(!street)
