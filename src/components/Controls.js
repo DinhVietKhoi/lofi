@@ -78,7 +78,7 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
     const music = useRef()
     //auto loadaudio
     useEffect(() => {
-        music.current.addEventListener('ended', function () {
+        listMusic&&music.current.addEventListener('ended', function () {
             let dem = indexCurrent + 1;
             if (indexCurrent == listMusic && listMusic.length - 1) {
                 setIndexCurrent(0)
@@ -91,9 +91,9 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
                 setIndexCurrent(indexCurrent + 1)
             }
         });
-    }, [music.current,currentMusc])
+    }, [music.current,currentMusc,listMusic])
     const handlePlay = () => {
-        // music.current.autoplay =true;
+        music.current.autoplay =true;
         if (!checkPlay) { 
             music.current.play()
             setCheckPlay(!checkPlay)
@@ -105,7 +105,7 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
         pause == 'play' ? setPause('pause') : setPause('play')
     }
     const handleNext = () => {
-        // music.current.autoplay = true;
+        music.current.autoplay = true;
         if (listMusic && indexCurrent == listMusic.length - 1) {
             setIndexCurrent(0)
             setCurrentMusic(listMusic&&listMusic[0])
@@ -128,7 +128,7 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
         }
     }
     const handlePre = () => {
-        // music.current.autoplay =true; 
+        music.current.autoplay =true; 
         if (indexCurrent == 0) {
             setIndexCurrent(listMusic&&listMusic.length-1)
             setCurrentMusic(listMusic&&listMusic[listMusic.length-1])
@@ -150,11 +150,6 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
             setIndexCurrent(indexCurrent - 1)
         }
     }
-    //list audio
-    const [listAudio, setListAudio] = useState(false)
-    const handleListAudio = () => {
-        setListAudio(!listAudio)
-    }
     //setting account
     const [setting, checkSetting] = useState(false)
     const handleSetting = () => {
@@ -164,12 +159,13 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
     const [volume,setVolume] = useState(false)
     const [volumee,setVolumee] = useState(1)
     useEffect(() => {
-        music.current.volume = volumee;
-    }, [volumee])
+        if (listMusic) {
+            music.current.volume = volumee;
+        }
+    }, [volumee,listMusic])
     const handleVolume = () => {
         setVolume(!volume)
     }
-
     //set check show chatbox
     const [chat, setChat] = useState(false)
     const [check,setCheck] = useState(false)
