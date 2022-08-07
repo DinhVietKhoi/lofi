@@ -68,10 +68,10 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
     //set icon change
     const [pause, setPause] = useState('play')
     //list data
-    const [currentMusc, setCurrentMusic] = useState('https://vnno-vn-6-tf-mp3-s1-zmp3.zmdcdn.me/5550a26ad82e3170683f/3511956447422652229?authen=exp=1659970500~acl=/5550a26ad82e3170683f/*~hmac=a9a00e7ae1d97d37b2f2533a98c6b11b&fs=MTY1OTmUsIC5NzmUsICwMDU4OXx3ZWJWNnwwfDE3MS4yMzQdUngMTA5LjIyNw')
+    const [currentMusc, setCurrentMusic] = useState('')
     useEffect(() => {
         listMusic && setCurrentMusic(listMusic[0])
-    },[])
+    },[listMusic])
     const [indexCurrent, setIndexCurrent] = useState(0)
     const [checkPlay, setCheckPlay] = useState(false)
     
