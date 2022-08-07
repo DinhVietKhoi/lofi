@@ -70,7 +70,7 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
     //list data
     const [currentMusc, setCurrentMusic] = useState('')
     useEffect(() => {
-        listMusic&&setCurrentMusic(listMusic[0])
+        listMusic && setCurrentMusic(listMusic[0])
     },[listMusic])
 
     const [indexCurrent, setIndexCurrent] = useState(0)
@@ -94,31 +94,15 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
     }, [music.current,currentMusc])
     const handlePlay = () => {
         // music.current.autoplay =true;
-        if (!checkRain) { 
-            rain.current.play()
-            setCheckRain(!checkRain)
-        } 
-        else {
-            setCheckRain(!checkRain)
-            rain.current.pause()
-        }
-        pause == 'play' ? setPause('pause') : setPause('play')
-        
         if (!checkPlay) { 
-            // rain.current.play()
-            // setCheckRain(!checkRain)
             music.current.play()
             setCheckPlay(!checkPlay)
-
-            console.log(music.current)
         } 
         else {
-            // setCheckRain(!checkRain)
-            music.current.pause()
-            // rain.current.pause()
             setCheckPlay(!checkPlay)
-            console.log(music.current)
+            music.current.pause()
         }
+        pause == 'play' ? setPause('pause') : setPause('play')
     }
     const handleNext = () => {
         // music.current.autoplay = true;
@@ -282,17 +266,7 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
                         {
                             street&&<ChangeButton type={keyBoard} handleChange={changeKeyBoard} handleKeyBoard={handleKeyBoard} checkKeyBoard={checkKeyBoard} street={street}></ChangeButton>
                         }
-                        {/* <div className='controls__listAudio'>
-                            <RiPlayListLine fontSize="30px" color="#ffffff" cursor="pointer" onClick={handleListAudio}></RiPlayListLine>
-                            {
-                                listAudio&&<div className="controls__sound">
-                                    <div className="controls__sound-group">
-                                        <WiRaindrop fontSize="30px" color="#ffffff"></WiRaindrop>
-                                        <input type='range'></input>
-                                    </div>
-                                </div>
-                            }
-                        </div> */}
+                        
                     </div>
                     {
                         !loginAccount
@@ -400,12 +374,15 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
                         uris={['spotify:artist:6HQYnRM4OzToCYPpVBInuU']}
                     ></SpotifyPlayer> */
                 }
-                <audio
+                {
+                    listMusic&&<audio
                     src={currentMusc}
                     ref={music}
                     volume={volumee}
                 >
                 </audio>
+                }
+                
                 <audio
                     src={rainData}
                     ref={rain}
