@@ -297,7 +297,7 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
 
     const handleLogout1 = () => {
         handleLogout()
-        setChat(!chat)
+        setChat(false)
     }
     return (
         <div className="controls">
