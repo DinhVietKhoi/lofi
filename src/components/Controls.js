@@ -66,40 +66,49 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
     }, [street])
     
     //set icon change
-    const [pause, setPause] = useState('play')
+    const [pause, setPause] = useState('pause')
     //list data
     const [currentMusc, setCurrentMusic] = useState('')
     useEffect(() => {
         listMusic && setCurrentMusic(listMusic[0])
     },[listMusic])
     const [indexCurrent, setIndexCurrent] = useState(0)
-    const [checkPlay, setCheckPlay] = useState(false)
+    const [checkPlay, setCheckPlay] = useState(true)
     
 
     const music = useRef()
 
     //auto loadaudio
     useEffect(() => {
+        music.current.autoplay = true;
+
         listMusic&&music.current.addEventListener('ended', function () {
-            let dem = indexCurrent + 1;
-            if (indexCurrent == listMusic && listMusic.length - 1) {
+            if (listMusic && indexCurrent == listMusic.length - 1) {
                 setIndexCurrent(0)
                 setCurrentMusic(listMusic&&listMusic[0])
+                if (pause == 'play')
+                {
+                    setPause('pause')
+                    setCheckPlay(!checkPlay)
+                }
             }
             else {
-                listMusic && listMusic.map((a, index) => {
-                    dem == index && setCurrentMusic(a)
+                listMusic&&listMusic.map((a, index) => {
+                    indexCurrent+1 == index && setCurrentMusic(a)
                 })
                 setIndexCurrent(indexCurrent + 1)
+                if (pause == 'play')
+                {
+                    setPause('pause')
+                    setCheckPlay(!checkPlay)
+                }
             }
         });
     }, [music.current, currentMusc, listMusic])
     
     const handlePlay = () => {
+        music.current.autoplay = true;
         if (!checkPlay) { 
-            console.log(music.current)
-            console.log(rain.current)
-            console.log('play')
             music.current.play()
             setCheckPlay(!checkPlay)
         } 
@@ -155,6 +164,11 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
             setIndexCurrent(indexCurrent - 1)
         }
     }
+
+    // useEffect(() => {
+    //     music.current.play();
+    // }, [currentMusc])
+    
     //setting account
     const [setting, checkSetting] = useState(false)
     const handleSetting = () => {
