@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/lofi/static/css/main.9e467351.css",
-    "main.js": "/lofi/static/js/main.a0bc2d0d.js",
+    "main.js": "/lofi/static/js/main.27f3b6bf.js",
     "static/media/dayRain.mp4": "/lofi/static/media/dayRain.a1a298f819bb633ac406.mp4",
     "static/media/nightRain.mp4": "/lofi/static/media/nightRain.7b06cb4713d38a24bfef.mp4",
     "static/media/key.gif": "/lofi/static/media/key.d8cbf24cbf19eb82dfb1.gif",
@@ -14,10 +14,10 @@
     "static/media/settingMusic.gif": "/lofi/static/media/settingMusic.99293599ee71d0e1bca7.gif",
     "index.html": "/lofi/index.html",
     "main.9e467351.css.map": "/lofi/static/css/main.9e467351.css.map",
-    "main.a0bc2d0d.js.map": "/lofi/static/js/main.a0bc2d0d.js.map"
+    "main.27f3b6bf.js.map": "/lofi/static/js/main.27f3b6bf.js.map"
   },
   "entrypoints": [
     "static/css/main.9e467351.css",
-    "static/js/main.a0bc2d0d.js"
+    "static/js/main.27f3b6bf.js"
   ]
 }
