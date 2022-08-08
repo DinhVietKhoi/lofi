@@ -1,0 +1,12 @@
+.emoji{
+    border-radius: 100%;
+    cursor: pointer;
+    position: relative;
+}
+.emoji-picker-react{
+    position: absolute !important;
+    bottom:34px;
+    right:0;
+    border: 1px solid #06bfeb !important;
+    box-shadow: 1px 1px 10px #06bfeb !important;
+}

@@ -15,6 +15,7 @@ import { defineLordIconElement } from "lord-icon-element";
 import ItemChat from './ItemChat'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Emoji from './Emoji'
 
 // register lottie and define custom element
 defineLordIconElement(loadAnimation);
@@ -66,22 +67,20 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
     }, [street])
     
     //set icon change
-    const [pause, setPause] = useState('pause')
+    const [pause, setPause] = useState('play')
     //list data
     const [currentMusc, setCurrentMusic] = useState('')
     useEffect(() => {
         listMusic && setCurrentMusic(listMusic[0])
     },[listMusic])
     const [indexCurrent, setIndexCurrent] = useState(0)
-    const [checkPlay, setCheckPlay] = useState(true)
+    const [checkPlay, setCheckPlay] = useState(false)
     
 
     const music = useRef()
 
     //auto loadaudio
     useEffect(() => {
-        music.current.autoplay = true;
-
         listMusic&&music.current.addEventListener('ended', function () {
             if (listMusic && indexCurrent == listMusic.length - 1) {
                 setIndexCurrent(0)
@@ -145,7 +144,7 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
         music.current.autoplay =true; 
         if (indexCurrent == 0) {
             setIndexCurrent(listMusic&&listMusic.length-1)
-            setCurrentMusic(listMusic&&listMusic[listMusic.length-1])
+            setCurrentMusic(listMusic && listMusic[listMusic.length - 1])
             if (pause == 'play')
             {
                 setPause('pause')
@@ -187,6 +186,18 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
     }
     //set check show chatbox
     const [chat, setChat] = useState(false)
+    
+    //set check table emoji
+    const [checkEmoji, setCheckEmoji] = useState(false)
+    const handleCheckEmoji = () => {
+        setCheckEmoji(!checkEmoji)
+    }
+    const handleCheckEmoji1 = () => {
+        setCheckEmoji(false)
+    }
+    useEffect(() => {
+        setCheckEmoji(false)
+    },[chat])
     const [check,setCheck] = useState(false)
     const handleChat = () => {
         if (loginAccount) {
@@ -215,9 +226,32 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
     //get data Chat
     const [dataSuccess,setDataSuccess] = useState(0)
     const [dataChat, setDataChat] = useState('');
+    const handleDataChat = (emoji) => {
+        setDataChat(dataChat+emoji)
+    }
+
     const [idChat,setIdChat] = useState()
-    const handleChatInput = e => {
+    
+    
+    //get list chat
+    const [listChat, setListChat] = useState('')
+    useEffect(() => {
         
+        onValue((ref(db,'listChat')),(snapshot)=>{
+            const data = snapshot.val();
+            // if(data.length >= 50){
+            // }
+            setListChat(Object.values(data))
+        })
+        chat==true&&scrll.current.scrollIntoView({ behavior: "smooth" });
+    }, [db])
+
+    useEffect(() => {
+        chat==true&&scrll.current.scrollIntoView({ behavior: "smooth" });
+    }, [listChat])
+    
+    const handleChatInput = e => {
+
         onValue((ref(db,'idChat')),(snapshot)=>{
             const data = snapshot.val();
             setIdChat(data.idChat)
@@ -226,7 +260,7 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
         //     console.log(1)
         // }
         const dataChat1 = dataChat;
-        if (e.key == 'Enter' && dataChat1.replace(/\s/g, '') != '') {
+        if (idChat&&e.key == 'Enter' && dataChat1.replace(/\s/g, '') != '') {
             setDataChat('')
             set(ref(db, `listChat/${idChat}`), {
                 username: loginAccount.username,
@@ -238,6 +272,19 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
             set(ref(db, `idChat`), {
                 idChat: parseInt(idChat)+1
             })
+            let idDelete;
+            onValue((ref(db,'idDelete')),(snapshot)=>{
+                const data = snapshot.val();
+                idDelete = data.idDelete
+                // setListChat(Object.values(data))
+            })
+            if (listChat.length >= 50 &&idDelete) {
+                set(ref(db, `listChat/${idDelete}`), {
+                })
+                set(ref(db, `idDelete`), {
+                    idDelete: parseInt(idDelete)+1
+                })
+            }
         }
         else if(e.key == 'Enter' && dataChat1.replace(/\s/g, '') == ''){
             setDataChat('')
@@ -246,20 +293,8 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
     useEffect(() => {
         chat==true&&scrll.current.scrollIntoView({ behavior: "smooth" });
     }, [dataSuccess])
-    
-    //get list chat
-    const [listChat, setListChat] = useState('')
-    useEffect(() => {
-        onValue((ref(db,'listChat')),(snapshot)=>{
-            const data = snapshot.val();
-            setListChat(Object.values(data))
-        })
-        chat==true&&scrll.current.scrollIntoView({ behavior: "smooth" });
-    }, [db])
-    useEffect(() => {
-        chat==true&&scrll.current.scrollIntoView({ behavior: "smooth" });
-    }, [listChat])
-    
+
+
     const handleLogout1 = () => {
         handleLogout()
         setChat(!chat)
@@ -344,7 +379,6 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
                                 </div>
                                 
                                 <div className='controls__chatContainer'>
-                                    
                                     <div className='controls__showChat'>
                                         <h3>️🎶Chúc mọi người nghe nhạc vui vẻ nhoé️🎶</h3>
                                         <div className='controls__listChat'>
@@ -371,7 +405,8 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
                                     </div>
                                     
                                     <div className='controls__inputChat'>
-                                        <input maxLength="70" placeholder='Chat vào đây...' value={dataChat} onChange={e => setDataChat(e.target.value)} onKeyDown={handleChatInput}></input>
+                                    <input maxLength="70" placeholder='Chat vào đây...' value={dataChat} onChange={e =>setDataChat(e.target.value)} onKeyDown={handleChatInput} onClick={handleCheckEmoji1}></input>
+                                    <Emoji handleDataChat={handleDataChat} checkEmoji={checkEmoji} handleCheckEmoji={handleCheckEmoji}></Emoji>
                                     </div>
                                 </div>
                         </div>
