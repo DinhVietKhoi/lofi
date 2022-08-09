@@ -55,7 +55,7 @@ function App() {
   }, [db])
   const [street, setStreet] = useState(false)
   const changeStreet = () => {
-    setStreet(!street)
+      setStreet(!street)
   }
   //rain
   const [weather, setWeather] = useState('cloud')
@@ -110,6 +110,7 @@ function App() {
       ></Controls>
       <Street Street weather={weather} status={status} changeStreet={changeStreet} street={street}></Street>
       <Home weather={weather} status={status} changeStreet={changeStreet} street={street} ></Home>
+      
     </>
   );
 }

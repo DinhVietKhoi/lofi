@@ -11,7 +11,21 @@ function Home({ weather, status,changeStreet ,street }) {
     const [zindexNight,setZindexNight] = useState(0)
     const [zindexDayRain,setZindexDayRain] = useState(0)
     const [zindexNightRain, setZindexNightRain] = useState(0)
-    const [showPage,setShowPage] = useState("home")
+    const [showPage, setShowPage] = useState("home")
+    
+    const [checkDay,setCheckDay] = useState(true)
+    const [checkNight,setCheckNight] = useState(true)
+    const [checkDayRain,setCheckDayRain] = useState(true)
+    const [checkNightRain, setCheckNightRain] = useState(true)
+
+    useEffect(() => {
+        setTimeout(() => {
+            zindexDay!=1?setCheckDay(true):setCheckDay(false)
+            zindexNight!=1?setCheckNight(true):setCheckNight(false)
+            zindexDayRain!=1?setCheckDayRain(true):setCheckDayRain(false)
+            zindexNightRain!=1?setCheckNightRain(true):setCheckNightRain(false)
+        }, 100)
+    },[zindexDay,zindexNight,zindexDayRain,zindexNightRain])
     useEffect(() => {
         if (weather === 'cloud' && status === 'sun') {
             setClassContainer('home__container day')
@@ -57,7 +71,7 @@ function Home({ weather, status,changeStreet ,street }) {
                     <img src={exit} onClick={changeStreet}></img>
                     <div className='home__note'>GO OUT</div>
                 </div>
-                <div className="home__video" style={{zIndex:zindexDay}}>
+                <div className="home__video" style={checkDay ? { zIndex: zindexDay, display: "none" } : {zIndex: zindexDay, display: "block"}}>
                     <video className='home__video--day'
                         src={day}
                         loop
@@ -67,7 +81,7 @@ function Home({ weather, status,changeStreet ,street }) {
                     >
                     </video>
                 </div>
-                <div className="home__video1" style={{zIndex:zindexDayRain}}>
+                <div className="home__video1" style={checkDayRain ? { zIndex: zindexDayRain, display: "none" } : {zIndex: zindexDayRain, display: "block"}}>
                     <video className='home__video--dayRain'
                         src={dayRain}
                         loop
@@ -77,7 +91,7 @@ function Home({ weather, status,changeStreet ,street }) {
                     >
                     </video>
                 </div>
-                <div className="home__video2" style={{zIndex:zindexNight}}>
+                <div className="home__video2" style={ checkNight? { zIndex: zindexNight, display: "none" } : {zIndex: zindexNight, display: "block"}}>
                     <video className='home__video--night'
                         src={night} 
                         loop 
@@ -87,7 +101,7 @@ function Home({ weather, status,changeStreet ,street }) {
                     >
                     </video>
                 </div>
-                <div className="home__video3" style={{zIndex:zindexNightRain}}>
+                <div className="home__video3" style={checkNightRain ? { zIndex: zindexNightRain, display: "none" } : {zIndex: zindexNightRain, display: "block"}}>
                     <video className='home__video--nightRain'
                         src={nightRain} 
                         loop 
