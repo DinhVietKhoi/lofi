@@ -227,7 +227,9 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
     const [dataSuccess,setDataSuccess] = useState(0)
     const [dataChat, setDataChat] = useState('');
     const handleDataChat = (emoji) => {
-        setDataChat(dataChat+emoji)
+        if (dataChat.length <=68) {
+            setDataChat(dataChat+emoji)
+        }
     }
 
     const [idChat,setIdChat] = useState()

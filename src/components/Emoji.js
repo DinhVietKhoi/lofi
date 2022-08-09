@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import load from '../assets/load.gif'
 import { loadAnimation } from "lottie-web";
 import { defineLordIconElement } from "lord-icon-element";
 // import { Picker } from 'emoji-mart'
@@ -21,23 +22,24 @@ return (
             >
         </lord-icon>
         {
-            checkEmoji && <Picker
-                onEmojiClick={onEmojiClick}
-                groupVisibility={{
-                    flags: false,
-                    food_drink: false,
-                    travel_places: false,
-                    activities: false,
-                    objects: false,
-                    symbols: false,
-                    animals_nature: false,
-                    recently_used:false
-                }}
-                // preload
-                // disableAutoFocus
-                // disableSearchBar
-                // disableSkinTonePicker
-            />
+            checkEmoji &&
+                <Picker
+                    onEmojiClick={onEmojiClick}
+                    groupVisibility={{
+                        flags: false,
+                        food_drink: false,
+                        travel_places: false,
+                        activities: false,
+                        objects: false,
+                        symbols: false,
+                        animals_nature: false,
+                        recently_used:false
+                    }}
+                    // preload
+                    // disableAutoFocus
+                    // disableSearchBar
+                    // disableSkinTonePicker
+                />
         }
     </div>
 )

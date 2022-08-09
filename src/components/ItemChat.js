@@ -10,9 +10,9 @@ return (
         <div className='itemChat__content'>
             <div className='itemChat__boxContent'>
                 <span className='itemChat__cham'>:</span>
-                <p>
+                <span>
                     { content}
-                </p>  
+                </span>  
             </div>
         </div>
     </div>
