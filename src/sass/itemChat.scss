@@ -1,6 +1,21 @@
 .itemChat{
+    margin: 5px 0;
     width: 100%;
-    margin:2.5px 0;
+    display: flex;
+    flex-direction: column;
+    &__time{
+        color:#a7a5a5;
+        font-weight: 300;
+        font-style: italic;
+    }
+    &__container{
+        width: 100%;
+        margin:2.5px 0;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
     &__cham{
         font-weight: 700;
         margin: 0 5px;
@@ -14,10 +29,7 @@
             background-color: transparent;
         }
     }
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: flex-start;
+    
     &__content{
         font-size: 16px;
         display: flex;

@@ -19,7 +19,7 @@ import Emoji from './Emoji'
 
 // register lottie and define custom element
 defineLordIconElement(loadAnimation);
-
+//
 // import  SpotifyPlayer from 'react-spotify-web-playback';
 function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather, changeStatus, changeKeyBoard, street, handleLg, handleRg, loginAccount, handleLogout, checkRg}) {
     const rain = useRef()
@@ -253,7 +253,6 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
     }, [listChat])
     
     const handleChatInput = e => {
-
         onValue((ref(db,'idChat')),(snapshot)=>{
             const data = snapshot.val();
             setIdChat(data.idChat)
@@ -263,12 +262,16 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
         // }
         const dataChat1 = dataChat;
         if (idChat&&e.key == 'Enter' && dataChat1.replace(/\s/g, '') != '') {
+            const dateCurrent = new Date();
+            const date = `${dateCurrent.getHours()}h${dateCurrent.getMinutes()}p${dateCurrent.getSeconds()}s - Ngày ${dateCurrent.getDate()}/${dateCurrent.getMonth() + 1}/${dateCurrent.getFullYear()}`
+            console.log(dateCurrent.getMinutes())
             setDataChat('')
             set(ref(db, `listChat/${idChat}`), {
                 username: loginAccount.username,
                 sex: loginAccount.sex,
                 name: loginAccount.name,
                 content: dataChat,
+                time:date
             })
             setDataSuccess(dataSuccess+1)
             set(ref(db, `idChat`), {
@@ -385,8 +388,8 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
                                         <h3>️🎶Chúc mọi người nghe nhạc vui vẻ nhoé️🎶</h3>
                                         <div className='controls__listChat'>
                                             {
-                                                listChat&&listChat.map(e => [
-                                                    <ItemChat key={e} name={e.name} content={e.content} sex={e.sex}></ItemChat>
+                                            listChat && listChat.map(e => [
+                                                    <ItemChat key={e} name={e.name} content={e.content} sex={e.sex} time={e.time}></ItemChat>
                                                 ])
                                             }
                                             {/* <ItemChat name='admin' content='hihihihi' sex='1'></ItemChat>
