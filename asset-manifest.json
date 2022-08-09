@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/lofi/static/css/main.9e467351.css",
-    "main.js": "/lofi/static/js/main.27f3b6bf.js",
+    "main.css": "/lofi/static/css/main.3a2bb10e.css",
+    "main.js": "/lofi/static/js/main.433d2964.js",
     "static/media/dayRain.mp4": "/lofi/static/media/dayRain.a1a298f819bb633ac406.mp4",
     "static/media/nightRain.mp4": "/lofi/static/media/nightRain.7b06cb4713d38a24bfef.mp4",
     "static/media/key.gif": "/lofi/static/media/key.d8cbf24cbf19eb82dfb1.gif",
@@ -12,12 +12,13 @@
     "static/media/exit.gif": "/lofi/static/media/exit.b5c048ce3c66a70a5926.gif",
     "static/media/volume.gif": "/lofi/static/media/volume.220e42f7a3b87ef37196.gif",
     "static/media/settingMusic.gif": "/lofi/static/media/settingMusic.99293599ee71d0e1bca7.gif",
+    "static/media/load.gif": "/lofi/static/media/load.d7a7dfdab674abefac77.gif",
     "index.html": "/lofi/index.html",
-    "main.9e467351.css.map": "/lofi/static/css/main.9e467351.css.map",
-    "main.27f3b6bf.js.map": "/lofi/static/js/main.27f3b6bf.js.map"
+    "main.3a2bb10e.css.map": "/lofi/static/css/main.3a2bb10e.css.map",
+    "main.433d2964.js.map": "/lofi/static/js/main.433d2964.js.map"
   },
   "entrypoints": [
-    "static/css/main.9e467351.css",
-    "static/js/main.27f3b6bf.js"
+    "static/css/main.3a2bb10e.css",
+    "static/js/main.433d2964.js"
   ]
 }
