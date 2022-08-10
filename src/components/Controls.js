@@ -21,7 +21,7 @@ import Emoji from './Emoji'
 defineLordIconElement(loadAnimation);
 //
 // import  SpotifyPlayer from 'react-spotify-web-playback';
-function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather, changeStatus, changeKeyBoard, street, handleLg, handleRg, loginAccount, handleLogout, checkRg}) {
+function Controls({ listUser, listMusic, weather, status, keyBoard, changeWeather, changeStatus, changeKeyBoard, street, handleLg, handleRg, loginAccount, handleLogout, checkRg, connect }) {
     const rain = useRef()
     const rainData = 'https://s3.us-east-2.amazonaws.com/lofi.co/lofi.co/effects/rain_city.mp3'
     const [checkRain,setCheckRain] = useState(false)
@@ -231,10 +231,8 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
             setDataChat(dataChat+emoji)
         }
     }
-
+    
     const [idChat,setIdChat] = useState()
-    
-    
     //get list chat
     const [listChat, setListChat] = useState('')
     useEffect(() => {
@@ -264,7 +262,7 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
         if (idChat&&e.key == 'Enter' && dataChat1.replace(/\s/g, '') != '') {
             const dateCurrent = new Date();
             const date = `${dateCurrent.getHours()}h${dateCurrent.getMinutes()}p${dateCurrent.getSeconds()}s - Ngày ${dateCurrent.getDate()}/${dateCurrent.getMonth() + 1}/${dateCurrent.getFullYear()}`
-            console.log(dateCurrent.getMinutes())
+            
             setDataChat('')
             set(ref(db, `listChat/${idChat}`), {
                 username: loginAccount.username,
@@ -292,6 +290,49 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
             }
         }
         else if(e.key == 'Enter' && dataChat1.replace(/\s/g, '') == ''){
+            setDataChat('')
+        }
+    }
+
+    const handleClickChat = () => {
+        onValue((ref(db,'idChat')),(snapshot)=>{
+            const data = snapshot.val();
+            setIdChat(data.idChat)
+        })
+        // if (dataChat.replace('','') != '') {
+        //     console.log(1)
+        // }
+        const dataChat1 = dataChat;
+        if (dataChat1.replace(/\s/g, '') != '') {
+            const dateCurrent = new Date();
+            const date = `${dateCurrent.getHours()}h${dateCurrent.getMinutes()}p${dateCurrent.getSeconds()}s - Ngày ${dateCurrent.getDate()}/${dateCurrent.getMonth() + 1}/${dateCurrent.getFullYear()}`
+            setDataChat('')
+            set(ref(db, `listChat/${idChat}`), {
+                username: loginAccount.username,
+                sex: loginAccount.sex,
+                name: loginAccount.name,
+                content: dataChat,
+                time:date
+            })
+            setDataSuccess(dataSuccess+1)
+            set(ref(db, `idChat`), {
+                idChat: parseInt(idChat)+1
+            })
+            let idDelete;
+            onValue((ref(db,'idDelete')),(snapshot)=>{
+                const data = snapshot.val();
+                idDelete = data.idDelete
+                // setListChat(Object.values(data))
+            })
+            if (listChat.length >= 50 &&idDelete) {
+                set(ref(db, `listChat/${idDelete}`), {
+                })
+                set(ref(db, `idDelete`), {
+                    idDelete: parseInt(idDelete)+1
+                })
+            }
+        }
+        else if(dataChat1.replace(/\s/g, '') == ''){
             setDataChat('')
         }
     }
@@ -331,7 +372,7 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
                             </div>
                             :
                             <div className='controls__user' onClick={handleSetting}>
-                                <span className='controls__name' style={loginAccount.name=="admin"?{color:"#f312d9"}:{color:"#11b9ec"}}>{`Hi, ${loginAccount.name}`} </span>
+                                <span className='controls__name' style={loginAccount.name=="admin"?{color:"#f312d9"}:{color:"#11b9ec"}}>{`${loginAccount.name}`} </span>
                                 <img src={loginAccount&&loginAccount.sex == 1 ? `https://avatars.dicebear.com/api/male/${loginAccount.name}.svg`: `https://avatars.dicebear.com/api/female/${loginAccount.name}.svg`}></img>
                                 {setting &&
                                     <div className='controls__setting'>
@@ -368,7 +409,7 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
                                     </div>
                                     <h3>Danh sách người dùng:</h3>
                                     <div className='controls__itemUser'>
-                                        <User name="admin" sex="1"></User>
+                                        <User name="admin" sex="1" ></User>
                                         {   listSearch!= ''?
                                             listUser && listUser.map(e => [
                                                 e.name.toLowerCase().indexOf(listSearch.toLowerCase())!=-1 && e.name != "admin"
@@ -410,8 +451,9 @@ function Controls({listUser, listMusic, weather, status, keyBoard, changeWeather
                                     </div>
                                     
                                     <div className='controls__inputChat'>
-                                    <input maxLength="70" placeholder='Chat vào đây...' value={dataChat} onChange={e =>setDataChat(e.target.value)} onKeyDown={handleChatInput} onClick={handleCheckEmoji1}></input>
-                                    <Emoji handleDataChat={handleDataChat} checkEmoji={checkEmoji} handleCheckEmoji={handleCheckEmoji}></Emoji>
+                                        <input maxLength="70" placeholder='Chat vào đây...' value={dataChat} onChange={e =>setDataChat(e.target.value)} onKeyDown={handleChatInput} onClick={handleCheckEmoji1}></input>
+                                        <i class="fa-solid fa-paper-plane" onClick={handleClickChat}></i>
+                                        <Emoji handleDataChat={handleDataChat} checkEmoji={checkEmoji} handleCheckEmoji={handleCheckEmoji}></Emoji>
                                     </div>
                                 </div>
                         </div>

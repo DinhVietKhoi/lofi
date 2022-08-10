@@ -35,6 +35,8 @@ function App() {
   const [listMusic, setListMusic] = useState()
   //list data User
   const [listUser, setListUser] = useState()
+  //check connected
+  const [connect,setConnect] = useState(false)
   useEffect(()=>{
       // Get database 
         onValue((ref(db,'listMusic')),(snapshot)=>{
@@ -51,6 +53,13 @@ function App() {
         listuser.map(l1=>{
           setListUser(pre1=>[...pre1,l1])
         })
+      })
+      onValue((ref(db,".info/connected")),(snapshot)=>{
+        if (snapshot.val() === true) {
+          setConnect(true)
+        } else {
+          setConnect(false)
+        }
       })
   }, [db])
   const [street, setStreet] = useState(false)
@@ -107,6 +116,7 @@ function App() {
         loginAccount={loginAccount}
         handleLogout={handleLogout}
         checkRg={checkRg}
+        connect={connect}
       ></Controls>
       <Street Street weather={weather} status={status} changeStreet={changeStreet} street={street}></Street>
       <Home weather={weather} status={status} changeStreet={changeStreet} street={street} ></Home>
