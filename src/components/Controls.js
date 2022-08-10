@@ -452,7 +452,7 @@ function Controls({ listUser, listMusic, weather, status, keyBoard, changeWeathe
                                     
                                     <div className='controls__inputChat'>
                                         <input maxLength="70" placeholder='Chat vào đây...' value={dataChat} onChange={e =>setDataChat(e.target.value)} onKeyDown={handleChatInput} onClick={handleCheckEmoji1}></input>
-                                        <i class="fa-solid fa-paper-plane" onClick={handleClickChat}></i>
+                                        <i className="fa-solid fa-paper-plane" onClick={handleClickChat}></i>
                                         <Emoji handleDataChat={handleDataChat} checkEmoji={checkEmoji} handleCheckEmoji={handleCheckEmoji}></Emoji>
                                     </div>
                                 </div>
